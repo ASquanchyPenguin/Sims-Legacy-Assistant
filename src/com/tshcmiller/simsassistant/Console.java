@@ -6,8 +6,11 @@ public class Console {
 
 	private Scanner scanner;
 	
+	private boolean showDebugText;
+	
 	public Console() {
-		scanner = new Scanner(System.in);
+		this.scanner = new Scanner(System.in);
+		this.showDebugText = false;
 	}
 	
 	/**
@@ -102,7 +105,7 @@ public class Console {
 	 * @param length the number of segments to write
 	 */
 	public void partitionLine(int length) {
-		for (int i = 0; i < 25; i++) {
+		for (int i = 0; i < 25 * length; i++) {
 			System.out.print("=");
 		}
 		
@@ -212,6 +215,15 @@ public class Console {
 	}
 	
 	/**
+	 * <p>Sets the value to show the debug text in the Console.</p>
+	 * @param showDebugText the desired value for the feature
+	 */
+	public void setShowDebugText(boolean showDebugText) {
+		writeNotification("Debug mode set to %b.", showDebugText);
+		this.showDebugText = showDebugText;
+	}
+	
+	/**
 	 * <p>Waits for the user to press a key.</p>
 	 */
 	public void waitForKeyPress() {
@@ -233,5 +245,26 @@ public class Console {
 	 */
 	public void writeln(String s) {
 		System.out.println(s);
+	}
+	
+	/**
+	 * <p>Prints out the String if debug mode is active. Adds a new line at the end.</p>
+	 * @param format the desired format of the output
+	 * @param objects the necessary objects for that format
+	 */
+	public void writeDebugText(String format, Object... objects) {
+		if (showDebugText) {
+			format = "[DEBUG]: " + format;
+			printfln(format, objects);
+		}
+	}
+	
+	/**
+	 * <p>Prints out a notification to the console.</p>
+	 * @param s the text to output
+	 */
+	public void writeNotification(String format, Object... objects) {
+		format = '<' + format + '>';
+		printfln(format, objects);
 	}
 }
