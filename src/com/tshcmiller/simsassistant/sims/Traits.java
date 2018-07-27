@@ -89,7 +89,7 @@ public final class Traits {
 	 * @param trait the trait to retrieve the type for
 	 * @return the trait type
 	 */
-	private static String getType(String trait) {
+	public static String getType(String trait) {
 		return traits.getAttribute(trait, "type");
 	}
 	

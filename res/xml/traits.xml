@@ -47,13 +47,13 @@
 		<self-assured type="emotional" conflicts=""/>
 	</child>
 	<toddler>
-		<angelic type="toddler"/>
-		<charmer type="toddler"/>
-		<clingy type="toddler"/>
-		<fussy type="toddler"/>
-		<independent type="toddler"/>
-		<inquisitive type="toddler"/>
-		<silly type="toddler"/>
-		<wild type="toddler"/>
+		<angelic type="toddler" conflicts=""/>
+		<charmer type="toddler" conflicts=""/>
+		<clingy type="toddler" conflicts=""/>
+		<fussy type="toddler" conflicts=""/>
+		<independent type="toddler" conflicts=""/>
+		<inquisitive type="toddler" conflicts=""/>
+		<silly type="toddler" conflicts=""/>
+		<wild type="toddler" conflicts=""/>
 	</toddler>
 </traits>

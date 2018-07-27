@@ -18,7 +18,7 @@ public class HelpCommand extends Command {
 		console.partitionLine(3);
 		
 		for (String command : commands) {
-			console.printfln("%-20s: %s", xmlFile.getAttribute(command, "usage"), xmlFile.getAttribute(command, "description"));
+			console.printfln("%-25s: %s", xmlFile.getAttribute(command, "usage"), xmlFile.getAttribute(command, "description"));
 		}
 		
 		console.partitionLine(3);

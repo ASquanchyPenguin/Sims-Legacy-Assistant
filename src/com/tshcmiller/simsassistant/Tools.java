@@ -46,4 +46,21 @@ public final class Tools {
 		return (k >= min) && (k <= max);
 	}
 	
+	/**
+	 * <p>Converts a string input to an integer.</p>
+	 * @param input the number to convert
+	 * @return the number (if successful)
+	 */
+	public static int convertInteger(String input) {
+		int k = -1;
+		
+		try {
+			k = Integer.parseInt(input);
+		} catch (NumberFormatException e) {
+			new Console().writeNotification("%s is not a valid integer.", input);
+		}
+		
+		return k;
+	}
+	
 }

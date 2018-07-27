@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <commands>
-	<clear description="clears the console" usage="clear" />
+	<clear description="Clears the console" usage="clear" />
 	<debug description="Shows or hides the debug text for the program" usage="debug [on/off]"/>
 	<help description="Shows a list of available commands" usage="help"/>
+	<trait-sys description="Toggles Trait System Settings" usage="trait-sys [mode] (0/1/2)"/>
 	<quit description="Quits and exits SimsAssistant" usage="quit" />
 </commands>

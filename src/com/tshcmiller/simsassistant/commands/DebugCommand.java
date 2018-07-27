@@ -11,11 +11,11 @@ public class DebugCommand extends Command {
 		
 		int length = args.length;
 		if (hasEnoughArguments(assistant, length, 2)) {
-			String input = args[1].toLowerCase();
+			String input = args[1];
 			
-			if (input.equals("on")) {
+			if (input.equalsIgnoreCase("on")) {
 				console.setShowDebugText(true);
-			} else if (input.equals("off")) {
+			} else if (input.equalsIgnoreCase("off")) {
 				console.setShowDebugText(false);
 			} else {
 				this.warnIllegalArgument(assistant, args[1], args[0]);

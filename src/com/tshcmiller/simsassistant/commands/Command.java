@@ -26,6 +26,8 @@ public abstract class Command {
 			return new HelpCommand();
 		case "quit":
 			return new QuitCommand();
+		case "trait-sys":
+			return new TraitSysCommand();
 		default:
 			System.err.printf(">>>NOTE: %s is not a registered command!<<<%n", name);
 			return null;

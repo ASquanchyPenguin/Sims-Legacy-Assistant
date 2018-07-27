@@ -6,6 +6,8 @@ import static com.tshcmiller.simsassistant.sims.Traits.writeMaps;
 import java.util.ArrayList;
 
 import com.tshcmiller.simsassistant.commands.Command;
+import com.tshcmiller.simsassistant.sims.TraitSystem;
+import com.tshcmiller.simsassistant.sims.TraitSystemMode;
 
 public class SimsAssistant {
 	
@@ -136,8 +138,8 @@ public class SimsAssistant {
 		writeMaps(console);
 		
 		long stop = System.currentTimeMillis();
-		console.writeDebugText("Start complete in %dms.", (stop - start));
-		
+		console.printfln("Start-up complete in %dms.", (stop - start));
+
 		run();
 	}
 	
