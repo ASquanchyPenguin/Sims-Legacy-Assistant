@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<traits>
+	<adult>
+		<ambitious type="emotional" conflicts="lazy"/>
+		<family-orientated type="social" conflicts="non-committal, hates-children"/>
+		<non-committal type="social" conflicts="family-orientated"/>
+	</adult>
+	<teen>
+		<bro type="social" conflicts=""/>
+		<childish type="lifestyle" conflicts="snob, evil, hates-children"/>
+		<clumsy type="lifestyle" conflicts=""/>
+		<foodie type="hobby" conflicts="glutton"/>
+		<hates-children type="social" conflicts="childish, family-orientated"/>
+		<romantic type="emotional" conflicts=""/>
+		<snob type="lifestyle" conflicts="goofball, childish"/>
+	</teen>
+	<child>
+		<active type="emotional" conflicts="lazy"/>
+		<art-lover type="hobby" conflicts=""/>
+		<bookworm type="hobby" conflicts=""/>
+		<cheerful type="emotional" conflicts="gloomy, hot-headed"/>
+		<creative type="emotional" conflicts=""/>
+		<dance-machine type="lifestyle" conflicts=""/>
+		<erratic type="lifestyle" conflicts=""/>
+		<evil type="social" conflicts="good, childish"/>
+		<geek type="hobby" conflicts=""/>
+		<genius type="emotional" conflicts=""/>
+		<good type="social" conflicts="evil, mean, kleptomaniac"/>
+		<gloomy type="emotional" conflicts="cheerful, hot-headed"/>
+		<glutton type="lifestyle" conflicts="foodie"/>
+		<goofball type="emotional" conflicts="snob"/>
+		<hot-headed type="emotional" conflicts="cheerful, gloomy"/>
+		<insider type="social" conflicts="loner"/>
+		<jealous type="social" conflicts=""/>
+		<kleptomaniac type="lifestyle" conflicts="good"/>
+		<lazy type="lifestyle" conflicts="neat, active, ambitious"/>
+		<loner type="social" conflicts="insider, outgoing"/>
+		<loves-outdoors type="lifestyle" conflicts=""/>
+		<materialistic type="lifestyle" conflicts=""/>
+		<mean type="social" conflicts="good" />
+		<neat type="lifestyle" conflicts="slob, lazy"/>
+		<slob type="lifestyle" conflicts="neat"/>
+		<music-lover type="emotional" conflicts=""/>
+		<outgoing type="social" conflicts="loner"/>
+		<perfectionist type="hobby" conflicts=""/>
+		<self-assured type="emotional" conflicts=""/>
+	</child>
+	<toddler>
+		<angelic type="toddler"/>
+		<charmer type="toddler"/>
+		<clingy type="toddler"/>
+		<fussy type="toddler"/>
+		<independent type="toddler"/>
+		<inquisitive type="toddler"/>
+		<silly type="toddler"/>
+		<wild type="toddler"/>
+	</toddler>
+</traits>

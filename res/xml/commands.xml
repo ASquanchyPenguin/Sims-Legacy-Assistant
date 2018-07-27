@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<commands test="hello">
+<commands>
 	<clear description="clears the console" usage="clear" />
 	<debug description="Shows or hides the debug text for the program" usage="debug [on/off]"/>
 	<help description="Shows a list of available commands" usage="help"/>

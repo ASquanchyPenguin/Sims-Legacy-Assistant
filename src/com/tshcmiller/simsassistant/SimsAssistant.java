@@ -1,12 +1,15 @@
 package com.tshcmiller.simsassistant;
 
+import static com.tshcmiller.simsassistant.sims.Traits.loadTraits;
+import static com.tshcmiller.simsassistant.sims.Traits.writeMaps;
+
 import java.util.ArrayList;
 
 import com.tshcmiller.simsassistant.commands.Command;
 
 public class SimsAssistant {
 	
-	public static final String VERSION = "0.1.2";
+	public static final String VERSION = "0.3.1";
 	
 	private ArrayList<String> commands;
 	private Console console;
@@ -48,9 +51,10 @@ public class SimsAssistant {
 	 * <p>Loads the commands from the commands.xml file.</p>
 	 */
 	private void loadCommands() {
+		console.writeDebugText("Loading commands from xml-file");
 		this.xmlFile = new XMLReader("/xml/commands.xml");
 		this.commands = xmlFile.getNodeList("commands");
-		console.writeDebugText("Loaded all commands.");
+		console.writeDebugText("Loaded %d commands.", commands.size());
 	}
 	
 	/**
@@ -121,11 +125,18 @@ public class SimsAssistant {
 	 * <p>Starts SimsAssistant and then proceeds to run()</p>
 	 */
 	private void start() {
+		long start = System.currentTimeMillis();
+		
 		console.breakLine();
 		console.partitionLine(2);
 		console.writeNotification("Starting Sims Assistant [Version: %s]", VERSION);
 		console.setShowDebugText(true);
 		loadCommands();
+		loadTraits(console);
+		writeMaps(console);
+		
+		long stop = System.currentTimeMillis();
+		console.writeDebugText("Start complete in %dms.", (stop - start));
 		
 		run();
 	}
