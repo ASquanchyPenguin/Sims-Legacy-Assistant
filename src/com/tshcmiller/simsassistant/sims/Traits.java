@@ -12,9 +12,7 @@ public final class Traits {
 	private static XMLReader traits;
 	private static HashMap<String, String[]> conflictMap;
 	private static HashMap<String, String> typeMap;
-	
-	private static int numTraits;
-	
+		
 	/**<p>This class shouldn't be instantiated.</p> */
 	private Traits() {}
 	
@@ -98,6 +96,8 @@ public final class Traits {
 	 * @param console the current instance of the console
 	 */
 	public static void loadTraits(Console console) {
+		int numTraits = 0;
+		
 		console.writeDebugText("Loading traits from xml-file.");
 		traits = new XMLReader("/xml/traits.xml");
 		numTraits = traits.getNodeList("adult").size()

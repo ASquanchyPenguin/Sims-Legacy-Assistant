@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aspirations>
+	<child>
+		<artistic-prodigy />
+		<rambunctious-scamp />
+		<social-butterfly />
+		<whiz-kid />
+	</child>
+	<adult>
+		<angling-ace />
+		<bestselling-author />
+		<big-happy-family />
+		<body-builder />
+		<chief-of-mischief />
+		<computer-whiz />
+		<fabulously-wealthy />
+		<freelance-botanist />
+		<friend-of-the-world />
+		<joke-star />
+		<leader-of-the-pack />
+		<mansion-baron />
+		<master-chef />
+		<master-mixologist />
+		<musical-genius />
+		<nerd-brain />
+		<painter-extraordinaire />
+		<party-animal />
+		<public-enemy />
+		<renaissance-sim />
+		<serial-romantic />
+		<soulmate />
+		<successful-lineage />
+		<the-curator />
+	</adult>
+</aspirations>

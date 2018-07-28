@@ -11,7 +11,7 @@ public class TraitSystem {
 	/**
 	 * <p>The current mode of the TraitSystem. Each mode generates a random trait in a different way.</p>
 	 * <ol>
-	 * 	<li>RANDOM: Randomly assigns traits, but avoids conflicts.</li>
+	 *  <li>RANDOM: Randomly assigns traits, but avoids conflicts.</li>
 	 *  <li>BALANCED_MOOD: Assigns up to one emotional trait, with no other filters.</li>
 	 *  <li>BALANCED_TYPE: Assigns up to one trait per type.</li>
 	 * </ol>

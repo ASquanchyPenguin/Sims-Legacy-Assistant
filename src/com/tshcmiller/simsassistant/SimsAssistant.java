@@ -1,17 +1,16 @@
 package com.tshcmiller.simsassistant;
 
+import static com.tshcmiller.simsassistant.sims.Aspirations.loadAspriations;
 import static com.tshcmiller.simsassistant.sims.Traits.loadTraits;
 import static com.tshcmiller.simsassistant.sims.Traits.writeMaps;
 
 import java.util.ArrayList;
 
 import com.tshcmiller.simsassistant.commands.Command;
-import com.tshcmiller.simsassistant.sims.TraitSystem;
-import com.tshcmiller.simsassistant.sims.TraitSystemMode;
 
 public class SimsAssistant {
 	
-	public static final String VERSION = "0.3.1";
+	public static final String VERSION = "0.3.2";
 	
 	private ArrayList<String> commands;
 	private Console console;
@@ -136,9 +135,10 @@ public class SimsAssistant {
 		loadCommands();
 		loadTraits(console);
 		writeMaps(console);
+		loadAspriations(console);
 		
 		long stop = System.currentTimeMillis();
-		console.printfln("Start-up complete in %dms.", (stop - start));
+		console.writeDebugText("Start-up complete in %dms.", (stop - start));
 
 		run();
 	}
