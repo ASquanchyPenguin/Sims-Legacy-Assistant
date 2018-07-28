@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <commands>
+	<age description="Ages up the specified sim" usage="age (sim-ID)"/>
 	<clear description="Clears the console" usage="clear" />
+	<create description="Creates a sim with the specified age and name" usage="create [age] [name]"/>
+	<delete description="Deletes a sim from the current legacy" usage="delete (sim-ID) (-all)"/>
+	<deselect description="Deselects the currently selected sim, if there is one" usage="deselect"/>
 	<debug description="Shows or hides the debug text for the program" usage="debug [on/off]"/>
 	<help description="Shows a list of available commands" usage="help"/>
-	<trait-sys description="Toggles Trait System Settings" usage="trait-sys [mode] (0/1/2)"/>
+	<list description="Shows all of the sims in the current legacy" usage="list"/>
+	<select description="Selects the specified sim to simplify some commands" usage="select [sim-ID]" />
+	<trmode description="Toggles Trait System Settings" usage="trmode (1-3)"/>
 	<quit description="Quits and exits SimsAssistant" usage="quit" />
+	<show description="Shows who the specified sim is" usage="show (sim-ID)"/>
 </commands>

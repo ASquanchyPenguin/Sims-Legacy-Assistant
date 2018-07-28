@@ -15,13 +15,23 @@ public final class Aspirations {
 	private Aspirations() {}
 	
 	/**
-	 * <p>Gets a random aspiration from the list.</p>
+	 * <p>Gets a random adult aspiration from the list.</p>
 	 * @return the randomly generated aspiration
 	 */
-	public static String getRandomAspiration() {
-		int size = aspirations.size();
+	public static String getRandomAdultAspiration() {
+		int size = aspirations.size() - 1;
+		int max = (size - 4);
 		
-		return aspirations.get(Tools.generateRandomInteger(0, size - 1));
+		return aspirations.get(4 + Tools.generateRandomInteger(0, max));
+		
+	}
+	
+	/**
+	 * <p>Gets a random childhood aspiration from the list.</p>
+	 * @return the randomly generated aspiration
+	 */
+	public static String getRandomChildAspiration() {
+		return aspirations.get(Tools.generateRandomInteger(0, 3));
 	}
 	
 	/**

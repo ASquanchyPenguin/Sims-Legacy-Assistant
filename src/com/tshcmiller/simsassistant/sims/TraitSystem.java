@@ -66,6 +66,7 @@ public class TraitSystem {
 	 */
 	private void addRandomTrait(Console console, ArrayList<String> sublist) {
 		String trait = sublist.get(Tools.generateRandomInteger(0, sublist.size() - 1));
+		console.writeNotification("The trait \"%s\" has been acquired!", trait);
 		traits.add(trait);
 	}
 	
@@ -74,6 +75,11 @@ public class TraitSystem {
 	 * @param console the current instance of the console
 	 */
 	public void addTrait(Console console) {		
+		if (traits.size() >= 4) {
+			console.writeNotification("No more traits may be added.");
+			return;
+		}
+		
 		ArrayList<String> sublist = Traits.createSubListByAge(console, traits.size());
 		sublist.removeAll(getConflicts());
 				
@@ -102,10 +108,28 @@ public class TraitSystem {
 		
 		String[] ages = {"Toddler", "Childhood", "Adolescence", "Adulthood"};
 		for (int i = 0; i < traits.size(); i++) {
-			console.printfln("%-12s Trait: %s", ages[i], traits.get(i));
+			console.printfln("%-12s: %s", ages[i], traits.get(i));
+		}		
+	}
+	
+	/**
+	 * <p>Adds a certain number of traits to the system. No more than 4 total traits can be used at a time.</p>
+	 * @param console the current instance of the console
+	 * @param totalTraits the number of traits to add to the system
+	 */
+	public void fillTraits(Console console, int totalTraits) {
+		if (totalTraits <= 0 || totalTraits > 4) {
+			console.writeNotification("%d isn\'t a valid number of traits this system can have.", totalTraits);
+			return;
 		}
 		
-		console.partitionLine(2);
+		int initSize = traits.size();
+		
+		while (traits.size() < totalTraits) {
+			addTrait(console);
+		}
+		
+		console.writeDebugText("Added %d traits to system.", traits.size() - initSize);
 	}
 	
 	/**
@@ -133,6 +157,22 @@ public class TraitSystem {
 	}
 	
 	/**
+	 * <p>Gets the number of traits in this system.</p>
+	 * @return the number of traits.
+	 */
+	public int getNumTraits() {
+		return traits.size();
+	}
+	
+	/**
+	 * <p>Gets the system traits as a list.</p>
+	 * @return the list
+	 */
+	public String getTraitsAsList() {
+		return traits.toString();
+	}
+	
+	/**
 	 * <p>Creates a set of the current types of traits in the system</p>
 	 * @return the set of trait types
 	 */
@@ -146,4 +186,11 @@ public class TraitSystem {
 		return set;
 	}
 	
+	/**
+	 * <p>Determines if the system is full of traits.</p>
+	 * @return the result of this check
+	 */
+	public boolean isFull() {
+		return (traits.size() == 4);
+	}
 }

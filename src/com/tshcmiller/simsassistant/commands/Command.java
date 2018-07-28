@@ -18,16 +18,30 @@ public abstract class Command {
 	 */
 	public static Command getCommand(String name) {
 		switch (name) {
+		case "age":
+			return new AgeCommand();
 		case "clear":
 			return new ClearCommand();
+		case "create":
+			return new CreateCommand();
 		case "debug":
 			return new DebugCommand();
+		case "delete":
+			return new DeleteCommand();
+		case "deselect":
+			return new DeleselectCommand();
 		case "help":
 			return new HelpCommand();
+		case "list":
+			return new ListCommand();
 		case "quit":
 			return new QuitCommand();
-		case "trait-sys":
-			return new TraitSysCommand();
+		case "select":
+			return new SelectCommand();
+		case "trmode":
+			return new TraitModeCommand();
+		case "show":
+			return new ShowCommand();
 		default:
 			System.err.printf(">>>NOTE: %s is not a registered command!<<<%n", name);
 			return null;
@@ -52,7 +66,15 @@ public abstract class Command {
 	}
 	
 	/**
-	 * <p> Warns the user that they have entered an illegal argument.</p>
+	 * <p>Warns the user that there is no sim current selected.</p>
+	 * @param console the current instance of the console
+	 */
+	protected void warnNoSelectedSim(Console console) {
+		console.printfln("No sim is currently selected. Use \'select\' [sim-ID] to select a sim.");
+	}
+	
+	/**
+	 * <p>Warns the user that they have entered an illegal argument.</p>
 	 * @param assistant the current instance of the program
 	 * @param illegalArgument the illegal argument to warn them about
 	 * @param name the name of the command

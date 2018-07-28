@@ -41,20 +41,17 @@ public class Console {
 	 * @param prompt the question they will answer
 	 * @return 0 for "No" and 1 for "Yes"
 	 */
-	public int confirmAction(String prompt) {
+	public boolean confirmAction(String prompt) {
 		int k = -1;
 		
-		partitionLine(1);
+		partitionLine(2);
 		while (k == -1) {
 			printList(new String[] {prompt, "Yes", "No"});
-			partitionLine(1);
 			k = readInteger(1, 2);
-			partitionLine(1);
-		}
+			partitionLine(2);
+		}		
 		
-		k = (k == 2) ? 0 : 1;
-		
-		return k;
+		return (k == 1);
 	}
 	
 	/**
@@ -177,21 +174,18 @@ public class Console {
 		write("Your selection: ");
 		
 		String line = scanner.nextLine();
-		long delay = 1500;
 		int k = -1;
 
 		try {
 			k = Integer.parseInt(line);
 			
 			if (!Tools.validateInteger(k, min, max)) {
-				printfln("%d must be in the range [%d, %d]", k, min, max);
-				Tools.pause(delay);
+				writeNotification("%d must be in the range [%d, %d]", k, min, max);
 				return -1;
 			}
 			
 		} catch (NumberFormatException e) {
-			printfln("%s is not an integer!", line);
-			Tools.pause(delay);
+			writeNotification("%s is not an integer!", line);
 			return -1;
 		}
 		

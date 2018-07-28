@@ -17,6 +17,8 @@ public class HelpCommand extends Command {
 		console.breakLine();
 		console.partitionLine(3);
 		
+		console.printfln("Help Command Format: \'name\' [required-arg] (opt-arg)%n");
+		
 		for (String command : commands) {
 			console.printfln("%-25s: %s", xmlFile.getAttribute(command, "usage"), xmlFile.getAttribute(command, "description"));
 		}
