@@ -3,7 +3,9 @@ package com.tshcmiller.simsassistant.sims;
 import com.tshcmiller.simsassistant.Console;
 
 public class Toddler extends Sim {
-
+	
+	private static final long serialVersionUID = 1L;
+	
 	public Toddler(Console console, String name) {
 		super(name);
 		

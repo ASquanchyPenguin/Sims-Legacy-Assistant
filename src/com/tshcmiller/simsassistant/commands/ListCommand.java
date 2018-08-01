@@ -6,7 +6,6 @@ public class ListCommand extends Command {
 
 	@Override
 	public void execute(SimsAssistant assistant, String[] args) {
-		SimsAssistant.showCurrentLegacy(assistant.getConsole());
+		assistant.getLegacy().showSims(assistant.getConsole());
 	}
-
 }

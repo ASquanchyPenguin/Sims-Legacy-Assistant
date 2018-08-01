@@ -3,6 +3,8 @@ package com.tshcmiller.simsassistant.sims;
 import com.tshcmiller.simsassistant.Console;
 
 public class Adult extends Sim {
+	
+	private static final long serialVersionUID = 1L;
 
 	public Adult(Console console, String name, int age, TraitSystem traitSystem, String aspiration) {
 		super(name);

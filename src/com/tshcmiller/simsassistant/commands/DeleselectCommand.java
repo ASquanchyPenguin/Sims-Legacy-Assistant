@@ -6,7 +6,7 @@ public class DeleselectCommand extends Command {
 
 	@Override
 	public void execute(SimsAssistant assistant, String[] args) {
-		SimsAssistant.selectedSim = null;
+		assistant.getLegacy().setSelectedSim(null);
 	}
 
 }

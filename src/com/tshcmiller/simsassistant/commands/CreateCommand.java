@@ -58,7 +58,8 @@ public class CreateCommand extends Command {
 					sim = new Adult(console, name);
 					break;
 				}
-				SimsAssistant.addSimToCurrentLegacy(console, sim);
+				
+				assistant.getLegacy().addSim(console, sim);
 				return;
 			} else {
 				console.writeNotification("Possible ages for the sims are [0=toddler, 1=child, 2=teen,3=young-adult, 4=adult, 5=elder");

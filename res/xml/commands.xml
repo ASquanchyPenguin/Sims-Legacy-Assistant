@@ -4,7 +4,7 @@
 	<age description="Ages up the specified sim" usage="age (sim-ID)"/>
 	<clear description="Clears the console" usage="clear" />
 	<create description="Creates a sim with the specified age and name" usage="create [age] [name]"/>
-	<delete description="Deletes a sim from the current legacy" usage="delete (sim-ID) (-all)"/>
+	<delete description="Deletes a sim by id or a legacy [-legacy] (legacy)" usage="delete (sim-ID)"/>
 	<deselect description="Deselects the currently selected sim, if there is one" usage="deselect"/>
 	<debug description="Shows or hides the debug text for the program" usage="debug [on/off]"/>
 	<help description="Shows a list of available commands" usage="help"/>

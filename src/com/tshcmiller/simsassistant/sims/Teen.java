@@ -4,6 +4,8 @@ import com.tshcmiller.simsassistant.Console;
 
 public class Teen extends Sim {
 
+	private static final long serialVersionUID = 1L;
+	
 	public Teen(Console console, TraitSystem traitSystem, String name) {
 		super(name);
 		

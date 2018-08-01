@@ -1,6 +1,7 @@
 package com.tshcmiller.simsassistant.commands;
 
 import com.tshcmiller.simsassistant.Console;
+import com.tshcmiller.simsassistant.Legacy;
 import com.tshcmiller.simsassistant.SimsAssistant;
 import com.tshcmiller.simsassistant.sims.Sim;
 
@@ -10,12 +11,13 @@ public class DeleteCommand extends Command {
 	public void execute(SimsAssistant assistant, String[] args) {
 		int length = args.length;
 		Console console = new Console();
+		Legacy legacy = assistant.getLegacy();
 		
 		if (length == 1) {
-			Sim sim = SimsAssistant.selectedSim;
+			Sim sim = assistant.getSelectedSim();
 			
 			if (sim != null) {
-				SimsAssistant.deleteSimFromCurrentLegacy(console, sim.getID());
+				legacy.deleteSim(console, sim.getID());
 			} else {
 				this.warnNoSelectedSim(console);
 			}
@@ -25,11 +27,11 @@ public class DeleteCommand extends Command {
 		
 		if (length == 2) {
 			if (args[1].equalsIgnoreCase("-all")) {
-				SimsAssistant.deleteAllSimsFromLegacy(console);
+				legacy.deleteAllSims(console);
 				return;
 			}
 			
-			SimsAssistant.deleteSimFromCurrentLegacy(console, args[1]);
+			legacy.deleteSim(console, args[1]);
 			return;
 		}
 		

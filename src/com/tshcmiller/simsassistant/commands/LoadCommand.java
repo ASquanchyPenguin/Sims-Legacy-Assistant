@@ -10,7 +10,7 @@ public class LoadCommand extends Command {
 	public void execute(SimsAssistant assistant, String[] args) {
 		if (hasEnoughArguments(assistant, args.length, 2)) {
 			try {
-				SimsAssistant.loadLegacy(assistant.getConsole(), args[1]);
+				assistant.loadLegacy(assistant.getConsole(), args[1]);
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
