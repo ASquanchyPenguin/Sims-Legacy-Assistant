@@ -1,9 +1,13 @@
 package com.tshcmiller.simsassistant.sims;
 
+import java.io.Serializable;
+
 import com.tshcmiller.simsassistant.Console;
 
-public abstract class Sim {
+public abstract class Sim implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	protected TraitSystem traitSystem;
 	
 	protected String aspiration;

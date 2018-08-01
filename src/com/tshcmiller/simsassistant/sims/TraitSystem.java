@@ -1,13 +1,16 @@
 package com.tshcmiller.simsassistant.sims;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 
 import com.tshcmiller.simsassistant.Console;
 import com.tshcmiller.simsassistant.Tools;
 
-public class TraitSystem {
+public class TraitSystem implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * <p>The current mode of the TraitSystem. Each mode generates a random trait in a different way.</p>
 	 * <ol>

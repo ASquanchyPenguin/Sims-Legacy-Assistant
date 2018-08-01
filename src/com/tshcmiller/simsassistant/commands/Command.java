@@ -34,8 +34,12 @@ public abstract class Command {
 			return new HelpCommand();
 		case "list":
 			return new ListCommand();
+		case "load":
+			return new LoadCommand();
 		case "quit":
 			return new QuitCommand();
+		case "save":
+			return new SaveCommand();
 		case "select":
 			return new SelectCommand();
 		case "trmode":

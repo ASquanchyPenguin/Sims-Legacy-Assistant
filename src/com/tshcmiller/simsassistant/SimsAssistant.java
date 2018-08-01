@@ -4,6 +4,12 @@ import static com.tshcmiller.simsassistant.sims.Aspirations.loadAspriations;
 import static com.tshcmiller.simsassistant.sims.Traits.loadTraits;
 import static com.tshcmiller.simsassistant.sims.Traits.writeMaps;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,7 +19,7 @@ import com.tshcmiller.simsassistant.sims.Sim;
 
 public class SimsAssistant {
 		
-	public static final String VERSION = "0.4";
+	public static final String VERSION = "0.4.1";
 	
 	public static Sim selectedSim;
 	
@@ -48,7 +54,7 @@ public class SimsAssistant {
 		
 		currentLegacy.put(key, sim);
 		sim.assignID(key);
-		console.writeNotification("Added %s to the list of current sims! His ID is: %s", sim.getName(), key);
+		console.writeNotification("Added %s to the list of current sims! Their ID is: %s", sim.getName(), key);
 		console.partitionLine(2);
 	}
 	
@@ -67,6 +73,28 @@ public class SimsAssistant {
 		}
 		
 		console.printfln("No sims were deleted from the legacy.");		
+	}
+	
+	/**
+	 * <p>Deletes the specified legacy after confirmation.</p>
+	 * @param console the current instance of the console
+	 * @param name the name of the legacy to delete
+	 */
+	public static void deleteLegacy(Console console, String name) {
+		File file = new File("res/saves/" + name + ".ser");
+		
+		if (!file.exists()) {
+			console.writeNotification("No legacy called \"%s\" was found.", name);
+			return;
+		}
+		
+		if (console.confirmAction("Delete the \"" + name + "\" legacy?")) {
+			file.delete();
+			console.writeNotification("The legacy was deleted.");
+			return;
+		}
+		
+		console.writeNotification("The legacy was not deleted.");
 	}
 	
 	/**
@@ -141,6 +169,32 @@ public class SimsAssistant {
 	}
 	
 	/**
+	 * <p>Loads a legacy from a file.</p>
+	 * @param console the current instance of the console
+	 * @param name the name of the legacy
+	 * @throws IOException 
+	 * @throws ClassNotFoundException
+	 */
+	@SuppressWarnings("unchecked")
+	public static void loadLegacy(Console console, String name) throws IOException, ClassNotFoundException {
+		File file = new File("res/saves/" + name + ".ser");
+		
+		if (!file.exists()) {
+			console.writeNotification("No legacy with name \"%s\" was found.", name);
+			return;
+		}
+		
+		FileInputStream fis = new FileInputStream(file);
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		
+		currentLegacy = (HashMap<String, Sim>) (ois.readObject());
+		console.writeNotification("Loaded \"%s\" legacy.", name);
+		
+		ois.close();
+		fis.close();
+	}
+	
+	/**
 	 * <p>Creates a new instance of the SimsAssistant.</p>
 	 * @param args the command line arguments at the start of the program.
 	 */
@@ -153,23 +207,6 @@ public class SimsAssistant {
 	 * */
 	public boolean isRunning() {
 		return running;
-	}
-	
-	/**
-	 * <p>Shows the sims in the current legacy.</p>
-	 * @param console the current instance of the console
-	 */
-	public static void showCurrentLegacy(Console console) {
-		Collection<Sim> sims = currentLegacy.values();		
-		console.printfln(sims.toString());
-	}
-	
-	/**
-	 * <p>Stops SimsAssistant from running.</p>
-	 */
-	public void stopRunning() {
-		running = false;
-		console.close();
 	}
 	
 	/**
@@ -218,6 +255,31 @@ public class SimsAssistant {
 	}
 	
 	/**
+	 * <p>Saves a legacy to a file with a specified name.</p>
+	 * @param console the current instance of the console
+	 * @param name the name of the file
+	 * @throws IOException
+	 */
+	public static void saveLegacyToFile(Console console, String name) throws IOException {
+		File file = new File("res/saves/" + name + ".ser");
+		
+		if (file.exists()) {			
+			if (!console.confirmAction("This legacy already exists. Do you wish to overwrite it?")) {
+				return;
+			}
+		}
+		
+		console.writeDebugText("Attempting to save legacy: \"%s\"", name);
+		FileOutputStream fos = new FileOutputStream("res/saves/" + name + ".ser");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(currentLegacy);
+		oos.close();
+		fos.close();
+		
+		console.writeNotification("Legacy \"%s\" successfully saved!", name);
+	}
+	
+	/**
 	 * <p>Selects a sim for easier command entry.</p>
 	 * @param console the current instance of the console
 	 * @param id the id of the specified sim
@@ -229,6 +291,15 @@ public class SimsAssistant {
 		}
 		
 		console.printfln("No sim with ID \"%s\" was found", id);
+	}
+	
+	/**
+	 * <p>Shows the sims in the current legacy.</p>
+	 * @param console the current instance of the console
+	 */
+	public static void showCurrentLegacy(Console console) {
+		Collection<Sim> sims = currentLegacy.values();		
+		console.printfln(sims.toString());
 	}
 
 	/**
@@ -258,6 +329,14 @@ public class SimsAssistant {
 	private void stop() {
 		console.writeNotification("Exiting SimsAssistant.");
 		System.exit(0);
+	}
+	
+	/**
+	 * <p>Stops SimsAssistant from running.</p>
+	 */
+	public void stopRunning() {
+		running = false;
+		console.close();
 	}
 	
 	/**
