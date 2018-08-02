@@ -6,11 +6,11 @@ The Sims Legacy Assistant is a command based program designed to help maintain l
 
 ## Current Features
 1. Creates random Sims with traits and aspirations.
-2. Age up Sims on command to update their traits and aspirations if needed.
+2. Age up Sims on command and updates their traits and aspirations when needed.
 3. Supports additional (or custom) traits and aspirations from mods or DLCs.
-4. Save and Load Legacies to and from a file.
-5. Rolls random (and customizable) life events to randomize a sim's story.
-6. Prevents Sims in the same household from traits and aspirations, if desired. 
+4. Supports multiple Legacy saves.
+5. Rolls random life events to randomize a Sim's story. It also supports custom Random Life Events.
+6. Prevents Sims in the same household from sharing traits and aspirations, if desired. 
 *(This feature supports up to about 8 sims before traits will naturally overlap.)*
 
 ## Trait Modes
