@@ -24,7 +24,7 @@ public class TraitSystem implements Serializable {
 	private ArrayList<String> traits;
 	
 	public TraitSystem() {
-		this.traits = new ArrayList<String>();
+		this(new ArrayList<String>());
 	}
 	
 	public TraitSystem(ArrayList<String> traits) {

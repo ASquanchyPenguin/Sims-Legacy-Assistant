@@ -1,6 +1,7 @@
 package com.tshcmiller.simsassistant;
 
 import static com.tshcmiller.simsassistant.sims.Aspirations.loadAspriations;
+import static com.tshcmiller.simsassistant.stipulations.RandomLifeEvents.loadRandomLifeEvents;
 import static com.tshcmiller.simsassistant.sims.Traits.loadTraits;
 import static com.tshcmiller.simsassistant.sims.Traits.writeMaps;
 
@@ -17,7 +18,7 @@ import com.tshcmiller.simsassistant.sims.Sim;
 
 public class SimsAssistant {
 		
-	public static final String VERSION = "0.4.2";
+	public static final String VERSION = "0.5";
 			
 	private ArrayList<String> commands;
 	private Console console;
@@ -226,11 +227,12 @@ public class SimsAssistant {
 		console.breakLine();
 		console.partitionLine(2);
 		console.writeNotification("Starting Sims Legacy Assistant [Version: %s]", VERSION);
-		
+		console.setShowDebugText(true);
 		loadCommands();
 		loadTraits(console);
 		writeMaps(console);
 		loadAspriations(console);
+		loadRandomLifeEvents(console);
 		
 		long stop = System.currentTimeMillis();
 		console.writeDebugText("Start-up complete in %dms.", (stop - start));

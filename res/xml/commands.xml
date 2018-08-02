@@ -14,5 +14,6 @@
 	<select description="Selects the specified sim to simplify some commands" usage="select [sim-ID]" />
 	<trmode description="Toggles Trait System Settings" usage="trmode (1-3)"/>
 	<quit description="Quits and exits SimsAssistant" usage="quit" />
+	<rle description="Rolls a random life event for a non-specified sim" usage="rle" />
 	<show description="Shows who the specified sim is" usage="show (sim-ID)"/>
 </commands>

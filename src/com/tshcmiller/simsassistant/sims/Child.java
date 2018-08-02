@@ -4,6 +4,8 @@ import com.tshcmiller.simsassistant.Console;
 
 public class Child extends Sim {
 
+	private static final long serialVersionUID = 1L;
+
 	public Child(Console console, TraitSystem traitSystem, String name) {
 		super(name);
 		
@@ -18,7 +20,6 @@ public class Child extends Sim {
 	public Child(Console console, Toddler toddler) {
 		this(console, toddler.traitSystem, toddler.name);
 		this.id = toddler.id;
-		
 	}
 
 	@Override

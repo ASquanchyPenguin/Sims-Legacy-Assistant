@@ -44,6 +44,8 @@ public abstract class Command {
 			return new SelectCommand();
 		case "trmode":
 			return new TraitModeCommand();
+		case "rle":
+			return new RLECommand();
 		case "show":
 			return new ShowCommand();
 		default:
