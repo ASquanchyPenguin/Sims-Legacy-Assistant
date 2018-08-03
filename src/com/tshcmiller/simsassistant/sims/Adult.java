@@ -1,12 +1,13 @@
 package com.tshcmiller.simsassistant.sims;
 
 import com.tshcmiller.simsassistant.Console;
+import com.tshcmiller.simsassistant.SimsAssistant;
 
 public class Adult extends Sim {
 	
 	private static final long serialVersionUID = 1L;
 
-	public Adult(Console console, String name, int age, TraitSystem traitSystem, String aspiration) {
+	public Adult(SimsAssistant assistant, String name, int age, TraitSystem traitSystem, String aspiration) {
 		super(name);
 		
 		this.age = age;
@@ -14,23 +15,25 @@ public class Adult extends Sim {
 		this.aspiration = aspiration;
 		
 		if (!this.traitSystem.isFull()) {
-			traitSystem.fillTraits(console, 4);
+			traitSystem.fillTraits(assistant, 4);
 		}
 	}
 	
-	public Adult(Console console, String name) {
-		this(console, name, 3, new TraitSystem(), Aspirations.getRandomAdultAspiration());
-		console.writeNotification("The aspiration \"%s\" has been acquired!", aspiration);
+	public Adult(SimsAssistant assistant, String name) {
+		this(assistant, name, 3, new TraitSystem(), Aspirations.getRandomAdultAspiration(assistant));
+		assistant.getConsole().writeNotification("The aspiration \"%s\" has been acquired!", aspiration);
 	}
 
 	
-	public Adult(Console console, Teen teen) {
-		this(console, teen.name, 3, teen.traitSystem, teen.aspiration);
+	public Adult(SimsAssistant assistant, Teen teen) {
+		this(assistant, teen.name, 3, teen.traitSystem, teen.aspiration);
 		this.id = teen.id;
 	}
 
 	@Override
-	public Sim ageUp(Console console) {
+	public Sim ageUp(SimsAssistant assistant) {
+		Console console = assistant.getConsole();
+		
 		switch (++age) {
 		case 4:
 			console.writeNotification("Well, another year, another age. %s is now an Adult", this.toString());

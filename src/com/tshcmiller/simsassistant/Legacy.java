@@ -1,6 +1,7 @@
 package com.tshcmiller.simsassistant;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -10,6 +11,8 @@ public class Legacy implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public static boolean preventTraitSharing = true;
+	
 	private HashMap<String, Sim> sims;
 	private Sim selectedSim;
 	
@@ -84,6 +87,21 @@ public class Legacy implements Serializable {
 	}
 	
 	/**
+	 * <p>Gets all of the aspirations in the current legacy.</p>
+	 * @return the aspirations
+	 */
+	public ArrayList<String> getAspirations() {
+		ArrayList<String> legacyTraits = new ArrayList<String>();
+		Collection<Sim> legacySims = sims.values();
+		
+		for (Sim sim : legacySims) {
+			legacyTraits.add(sim.getAspiration());
+		}
+		
+		return legacyTraits;
+	}
+	
+	/**
 	 * <p>Gets the currently selected sim.</p>
 	 * @return the currently selected sim
 	 */
@@ -98,6 +116,21 @@ public class Legacy implements Serializable {
 	 */
 	public Sim getSimByID(String id) {
 		return sims.get(id);
+	}
+	
+	/**
+	 * <p>Gets all the traits in this legacy.</p>
+	 * @return the traits in the legacy
+	 */
+	public ArrayList<String> getLegacyTraits() {
+		ArrayList<String> legacyTraits = new ArrayList<String>();
+		Collection<Sim> legacySims = sims.values();
+		
+		for (Sim sim : legacySims) {
+			legacyTraits.addAll(sim.getTraitSystem().getTraits());
+		}
+		
+		return legacyTraits;
 	}
 	
 	/**

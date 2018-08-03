@@ -18,7 +18,7 @@ import com.tshcmiller.simsassistant.sims.Sim;
 
 public class SimsAssistant {
 		
-	public static final String VERSION = "0.5";
+	public static final String VERSION = "0.9 (BETA)";
 			
 	private ArrayList<String> commands;
 	private Console console;

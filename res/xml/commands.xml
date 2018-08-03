@@ -2,6 +2,7 @@
 
 <commands>
 	<age description="Ages up the specified sim" usage="age (sim-ID)"/>
+	<bl description="Toggles the restriction that prevents Sims in the same household from sharing traits or aspirations." usage="bl [on/off]"/>
 	<clear description="Clears the console" usage="clear" />
 	<create description="Creates a sim with the specified age and name" usage="create [age] [name]"/>
 	<delete description="Deletes a sim by id or a legacy [-legacy] (legacy)" usage="delete (sim-ID)"/>

@@ -20,6 +20,8 @@ public abstract class Command {
 		switch (name) {
 		case "age":
 			return new AgeCommand();
+		case "bl":
+			return new BLCommand();
 		case "clear":
 			return new ClearCommand();
 		case "create":

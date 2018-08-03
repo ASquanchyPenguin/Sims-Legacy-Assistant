@@ -3,6 +3,7 @@ package com.tshcmiller.simsassistant.sims;
 import java.io.Serializable;
 
 import com.tshcmiller.simsassistant.Console;
+import com.tshcmiller.simsassistant.SimsAssistant;
 
 public abstract class Sim implements Serializable {
 	
@@ -26,7 +27,7 @@ public abstract class Sim implements Serializable {
 	 * @param console the current instance of the console
 	 * @return the new representation of this sim
 	 */
-	public abstract Sim ageUp(Console console);
+	public abstract Sim ageUp(SimsAssistant assistant);
 	
 	/**
 	 * <p>Assigns an ID to this sim.</p>
@@ -114,7 +115,7 @@ public abstract class Sim implements Serializable {
 			default: return "???";
 		}		
 	}
-
+	
 	/**
 	 * <p>Gets the trait system for this sim</p>
 	 * @return the trait system

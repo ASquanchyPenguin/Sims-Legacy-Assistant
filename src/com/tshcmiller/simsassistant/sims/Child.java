@@ -1,30 +1,30 @@
 package com.tshcmiller.simsassistant.sims;
 
-import com.tshcmiller.simsassistant.Console;
+import com.tshcmiller.simsassistant.SimsAssistant;
 
 public class Child extends Sim {
 
 	private static final long serialVersionUID = 1L;
 
-	public Child(Console console, TraitSystem traitSystem, String name) {
+	public Child(SimsAssistant assistant, TraitSystem traitSystem, String name) {
 		super(name);
 		
 		this.age = 1;
 		this.traitSystem = traitSystem;
 		this.aspiration = Aspirations.getRandomChildAspiration();
-		this.traitSystem.fillTraits(console, 2);
+		this.traitSystem.fillTraits(assistant, 2);
 		
-		console.writeNotification("The aspiration \"%s\" has been acquired!", aspiration);
+		assistant.getConsole().writeNotification("The aspiration \"%s\" has been acquired!", aspiration);
 	}
 	
-	public Child(Console console, Toddler toddler) {
-		this(console, toddler.traitSystem, toddler.name);
+	public Child(SimsAssistant assistant, Toddler toddler) {
+		this(assistant, toddler.traitSystem, toddler.name);
 		this.id = toddler.id;
 	}
 
 	@Override
-	public Sim ageUp(Console console) {
-		console.writeNotification("Can you believe it? %s is now a Teen!", this.toString());
-		return new Teen(console, this);
+	public Sim ageUp(SimsAssistant assistant) {
+		assistant.getConsole().writeNotification("Can you believe it? %s is now a Teen!", this.toString());
+		return new Teen(assistant, this);
 	}
 }

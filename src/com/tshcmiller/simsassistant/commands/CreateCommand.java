@@ -46,16 +46,16 @@ public class CreateCommand extends Command {
 				console.partitionLine(2);
 				switch (k) {
 				case 0:
-					sim = new Toddler(console, name);
+					sim = new Toddler(assistant, name);
 					break;
 				case 1:
-					sim = new Child(console, new TraitSystem(), name);
+					sim = new Child(assistant, new TraitSystem(), name);
 					break;
 				case 2:
-					sim = new Teen(console, new TraitSystem(), name);
+					sim = new Teen(assistant, new TraitSystem(), name);
 					break;
 				default:
-					sim = new Adult(console, name);
+					sim = new Adult(assistant, name);
 					break;
 				}
 				
