@@ -7,27 +7,22 @@ public class Adult extends Sim {
 	
 	private static final long serialVersionUID = 1L;
 
-	public Adult(SimsAssistant assistant, String name, int age, TraitSystem traitSystem, String aspiration) {
+	public Adult(SimsAssistant assistant, String name, int age, TraitSystem traitSystem) {
 		super(name);
 		
 		this.age = age;
 		this.traitSystem = traitSystem;
-		this.aspiration = aspiration;
-		
-		if (!this.traitSystem.isFull()) {
-			traitSystem.fillTraits(assistant, 4);
-		}
 	}
 	
-	public Adult(SimsAssistant assistant, String name) {
-		this(assistant, name, 3, new TraitSystem(), Aspirations.getRandomAdultAspiration(assistant));
-		assistant.getConsole().writeNotification("The aspiration \"%s\" has been acquired!", aspiration);
+	public Adult(SimsAssistant assistant, TraitSystem system, String name) {
+		this(assistant, name, 3, system);
 	}
 
 	
 	public Adult(SimsAssistant assistant, Teen teen) {
-		this(assistant, teen.name, 3, teen.traitSystem, teen.aspiration);
+		this(assistant, teen.name, 3, teen.traitSystem);
 		this.id = teen.id;
+		this.aspiration = teen.aspiration;
 	}
 
 	@Override
@@ -47,5 +42,10 @@ public class Adult extends Sim {
 		}
 		
 		return this;
+	}
+
+	@Override
+	public void rollTraits(SimsAssistant assistant) {
+		this.traitSystem.fillTraits(assistant, name, 4);
 	}
 }

@@ -1,9 +1,9 @@
 package com.tshcmiller.simsassistant;
 
 import static com.tshcmiller.simsassistant.sims.Aspirations.loadAspriations;
-import static com.tshcmiller.simsassistant.stipulations.RandomLifeEvents.loadRandomLifeEvents;
 import static com.tshcmiller.simsassistant.sims.Traits.loadTraits;
 import static com.tshcmiller.simsassistant.sims.Traits.writeMaps;
+import static com.tshcmiller.simsassistant.stipulations.RandomLifeEvents.loadRandomLifeEvents;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import com.tshcmiller.simsassistant.commands.Command;
+import com.tshcmiller.simsassistant.commands.SaveCommand;
 import com.tshcmiller.simsassistant.sims.Sim;
 
 public class SimsAssistant {
@@ -41,19 +42,23 @@ public class SimsAssistant {
 	 */
 	public static void deleteLegacy(Console console, String name) {
 		File file = new File("res/saves/" + name + ".ser");
+		console.partitionLine(2);
 		
 		if (!file.exists()) {
 			console.writeNotification("No legacy called \"%s\" was found.", name);
+			console.partitionLine(2);
 			return;
 		}
 		
-		if (console.confirmAction("Delete the \"" + name + "\" legacy?")) {
+		if (console.confirmActionAsString("Delete the \"" + name + "\" legacy?")) {
 			file.delete();
 			console.writeNotification("The legacy was deleted.");
+			console.partitionLine(2);
 			return;
 		}
 		
 		console.writeNotification("The legacy was not deleted.");
+		console.partitionLine(2);
 	}
 	
 	/**
@@ -103,7 +108,7 @@ public class SimsAssistant {
 		console.writeDebugText("Loading commands from xml-file");
 		this.xmlFile = new XMLReader("/xml/commands.xml");
 		this.commands = xmlFile.getNodeList("commands");
-		console.writeDebugText("Loaded %d commands.", commands.size());
+		console.writeNotification("Loaded %d commands from file.", commands.size());
 	}
 	
 	/**
@@ -152,21 +157,27 @@ public class SimsAssistant {
 	private void run() {
 		running = true;
 		
-		console.partitionLine(2);
+		console.partitionLine(3);
 		
 		String[] input;
 		while (running) {
 			Sim selectedSim = legacy.getSelectedSim();
 			
-			if (selectedSim != null) {
-				console.write("[Enter a command, \"" + selectedSim.getName() + "\" is selected]: ");
+			if (legacy.hasName()) {
+				console.printfln("The %s Legacy: %s", legacy.getName(), legacy.getSimsAsList());
 			} else {
-				console.write("[Enter a command]: ");
+				console.printfln("Current Legacy: %s", legacy.getSimsAsList());
+			}
+			
+			if (selectedSim != null) {
+				console.write("> (" + selectedSim.getFirstName() + " is selected): ");
+			} else {
+				console.write("> ");
 			}
 			input = console.readLineArray();
 			
 			if (!runCommand(input)) {
-				console.writeNotification("Unknown command. Type \"help\" for help.");
+				console.writeNotification("Unknown command. Type \"help\" for a list of commands.");
 			}
 			
 			console.breakLine();
@@ -194,6 +205,26 @@ public class SimsAssistant {
 	}
 	
 	/**
+	 * <p>Saves the legacy before closing the program.</p>
+	 * @return if the legacy was saved
+	 */
+	private boolean saveLegacyOnClose() {
+		if (console.confirmActionAsString("Do you want to save the current legacy?")) {
+			String name = "";
+			
+			while (name.equals("")) {
+				console.write("Legacy name: ");
+				name = console.readLine();
+			}
+			
+			new SaveCommand().execute(this, new String[] {"save", name});
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
 	 * <p>Saves a legacy to a file with a specified name.</p>
 	 * @param console the current instance of the console
 	 * @param name the name of the file
@@ -215,7 +246,7 @@ public class SimsAssistant {
 		oos.close();
 		fos.close();
 		
-		console.writeNotification("Legacy \"%s\" successfully saved!", name);
+		console.printfln("Legacy \"%s\" successfully saved!", name);
 	}
 
 	/**
@@ -225,9 +256,9 @@ public class SimsAssistant {
 		long start = System.currentTimeMillis();
 		
 		console.breakLine();
-		console.partitionLine(2);
-		console.writeNotification("Starting Sims Legacy Assistant [Version: %s]", VERSION);
-		console.setShowDebugText(true);
+		console.partitionLine(3);
+		console.printfln("Starting Sims Legacy Assistant%nVersion: %s", VERSION);
+		console.partitionLine(3);
 		loadCommands();
 		loadTraits(console);
 		writeMaps(console);
@@ -244,15 +275,22 @@ public class SimsAssistant {
 	 * <p>Stops and then exits SimsAssistant.</p>
 	 */
 	private void stop() {
-		console.writeNotification("Exiting SimsAssistant.");
+		console.partitionLine(3);
+		console.printfln("Exiting Sims Legacy Assistant.");
+		console.breakLine();
+
+		saveLegacyOnClose();
+
+		console.printfln("Sims Legacy Assistant has closed.");
+		console.partitionLine(3);
+		console.close();
 		System.exit(0);
 	}
-	
+
 	/**
 	 * <p>Stops SimsAssistant from running.</p>
 	 */
 	public void stopRunning() {
 		running = false;
-		console.close();
 	}
 }

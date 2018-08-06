@@ -4,11 +4,11 @@
 	<e1 description="Your sim tells their boss a joke that does not go over too well. Your sim gets fired on the spot."/>
 	<e2 description="It's time to get lucky! Your sim has a night of fun and now may be expecting a child."/>
 	<e3 description="Your sim decides their love life needs more spice. They start a fling with someone new."/>
-	<e4 description="Your sim decides to watch a random channel on TV. If they gain a moodlet from the activity, the pursue a related skill or activity for 24 hours."/>
+	<e4 description="Your sim decides to watch a random channel on TV. %n If they gain a moodlet from the activity, the pursue a related skill or activity for 24 hours."/>
 	<e5 description="Your sim is quite exhausted. They will oversleep for their next working day."/>
 	<e6 description="Your sim decides to try taking some medicine - even though they don't need it."/>
 	<e7 description="Your sim forgets that bills are due and doesn't pay until the power goes out."/>
-	<e8 description="Some new guy at work sucks up to the bess and convices them to give you your old job. Your sim gets demoted immediately."/>
+	<e8 description="Some new guy at work sucks up to the bess and convices them to give you your old job. %n Your sim gets demoted immediately."/>
 	<e9 description="Your sim grows tired of their house. They decide to completely remodel the walls and floors."/>
 	<e10 description="After watching Avatar, your sim has a new interest in working out. They exercise for one week."/>
 	<e11 description="Your sim has been robbed! Delete $750 of items or lose 3 items if your sim isn't well off."/>

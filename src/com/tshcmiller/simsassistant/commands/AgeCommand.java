@@ -18,11 +18,11 @@ public class AgeCommand extends Command {
 			sim = assistant.getSelectedSim();
 			
 			if (sim != null) {
-				console.partitionLine(2);
+				console.partitionLine(3);
 				Sim agedSim = sim.ageUp(assistant);
 				legacy.updateSim(sim.getID(), agedSim);
 				legacy.setSelectedSim(agedSim);
-				console.partitionLine(2);
+				console.partitionLine(3);
 			} else {
 				this.warnNoSelectedSim(console);
 			}
@@ -34,9 +34,9 @@ public class AgeCommand extends Command {
 			sim = legacy.getSimByID(args[1]);
 			
 			if (sim != null) {
-				console.partitionLine(2);
+				console.partitionLine(3);
 				legacy.updateSim(sim.getID(), sim.ageUp(assistant));
-				console.partitionLine(2);
+				console.partitionLine(3);
 			} else {
 				console.writeNotification("No sim with id \"%s\" was found.", args[1]);
 				return;

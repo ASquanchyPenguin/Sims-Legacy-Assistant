@@ -11,10 +11,6 @@ public class Teen extends Sim {
 		
 		this.age = 2;
 		this.traitSystem = traitSystem;
-		this.aspiration = Aspirations.getRandomAdultAspiration(assistant);
-		this.traitSystem.fillTraits(assistant, 3);
-		
-		assistant.getConsole().writeNotification("The aspiration \"%s\" has been acquired!", aspiration);
 	}
 	
 	public Teen(SimsAssistant assistant, Child child) {
@@ -25,7 +21,14 @@ public class Teen extends Sim {
 	@Override
 	public Sim ageUp(SimsAssistant assistant) {
 		assistant.getConsole().writeNotification("They grow up so fast. %s is now a Young-Adult!", this.toString());
-		return new Adult(assistant, this);
+		Adult adult = new Adult(assistant, this);
+		adult.traitSystem.addTrait(assistant, name);
+		return adult;
+	}
+
+	@Override
+	public void rollTraits(SimsAssistant assistant) {
+		this.traitSystem.fillTraits(assistant, name, 3);
 	}
 
 }

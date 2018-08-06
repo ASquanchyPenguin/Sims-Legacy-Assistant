@@ -125,12 +125,20 @@ public abstract class Sim implements Serializable {
 	}
 	
 	/**
-	 * <p>Prints this sim's name out when called.</p>
-	 * @return this sim's name
+	 * <p>Rolls a random aspiration for the sim.</p>
+	 * @param assistant the current instance of the program
 	 */
-	public String toString() {
-		return name;
+	public void rollAspiration(SimsAssistant assistant) {
+		Console console = assistant.getConsole();
+		this.aspiration = Aspirations.getRandomAdultAspiration(assistant);
+		console.writeNotification("%s has acquired the aspiration %s!", name, aspiration);
 	}
+	
+	/**
+	 * <p>Rolls the traits for the sim.</p>
+	 * @param assistant the current instance of the program
+	 */
+	public abstract void rollTraits(SimsAssistant assistant);
 	
 	/**
 	 * <p>Sets the aspiration for this sim.</p>
@@ -154,6 +162,15 @@ public abstract class Sim implements Serializable {
 	 */
 	public void setTraitSystem(TraitSystem traitSystem) {
 		this.traitSystem = traitSystem;
+	}
+	
+
+	/**
+	 * <p>Prints this sim's name out when called.</p>
+	 * @return this sim's name
+	 */
+	public String toString() {
+		return name;
 	}
 	
 }

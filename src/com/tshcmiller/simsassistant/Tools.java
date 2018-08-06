@@ -49,7 +49,7 @@ public final class Tools {
 	/**
 	 * <p>Converts a string input to an integer.</p>
 	 * @param input the number to convert
-	 * @return the number (if successful)
+	 * @return the number (if successful) or -1 otherwise
 	 */
 	public static int convertInteger(String input) {
 		int k = -1;

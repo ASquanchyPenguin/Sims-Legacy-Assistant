@@ -9,7 +9,15 @@ public class RLECommand extends Command {
 	@Override
 	public void execute(SimsAssistant assistant, String[] args) {
 		Console console = assistant.getConsole();
-		console.printfln(RandomLifeEvents.getRandomLifeEvent());
+		console.partitionLine(4);
+		
+		String event = RandomLifeEvents.getRandomLifeEvent();
+		String[] lines = event.split("\\s+%n\\s+");
+		
+		for (String line : lines) {
+			console.printfln("%s", line);
+		}
+		
+		console.partitionLine(4);
 	}
-
 }

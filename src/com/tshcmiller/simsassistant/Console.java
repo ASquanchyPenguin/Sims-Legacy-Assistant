@@ -10,7 +10,7 @@ public class Console {
 	
 	public Console() {
 		this.scanner = new Scanner(System.in);
-		this.showDebugText = false;
+		this.showDebugText = Settings.defaultDebugText;
 	}
 	
 	/**
@@ -24,7 +24,7 @@ public class Console {
 	 * <p>Clears the console to create some space for the line of output.</p>
 	 */
 	public void clear() {
-		for (int i = 0; i < 25; i++) {
+		for (int i = 0; i < Settings.defaultClearSize; i++) {
 			breakLine();
 		}
 	}
@@ -39,16 +39,33 @@ public class Console {
 	/**
 	 * <p>Asks the user a yes/no question.</p>
 	 * @param prompt the question they will answer
-	 * @return 0 for "No" and 1 for "Yes"
+	 * @return if the user entered yes
+	 */
+	public boolean confirmActionAsString(String prompt) {
+		String input = "";
+		
+		while (!input.equalsIgnoreCase("yes") && !input.equalsIgnoreCase("no")) {
+			printf("%s%nEnter \"yes\" or \"no\": ", prompt);
+			input = readLine();
+			breakLine();
+		}
+		
+		return input.equalsIgnoreCase("yes");
+	}
+	
+	/**
+	 * <p>Asks the user a yes/no question.</p>
+	 * @param prompt the question they will answer
+	 * @return if the user entered 1
 	 */
 	public boolean confirmAction(String prompt) {
 		int k = -1;
 		
-		partitionLine(2);
+		breakLine();
 		while (k == -1) {
 			printList(new String[] {prompt, "Yes", "No"});
 			k = readInteger(1, 2);
-			partitionLine(2);
+			breakLine();
 		}		
 		
 		return (k == 1);
@@ -180,12 +197,12 @@ public class Console {
 			k = Integer.parseInt(line);
 			
 			if (!Tools.validateInteger(k, min, max)) {
-				writeNotification("%d must be in the range [%d, %d]", k, min, max);
+				writeWarning("%d is not in the range [%d, %d]", k, min, max);
 				return -1;
 			}
 			
 		} catch (NumberFormatException e) {
-			writeNotification("%s is not an integer!", line);
+			writeWarning("%s is not an integer!", line);
 			return -1;
 		}
 		
@@ -213,7 +230,7 @@ public class Console {
 	 * @param showDebugText the desired value for the feature
 	 */
 	public void setShowDebugText(boolean showDebugText) {
-		writeNotification("Debug mode set to %b.", showDebugText);
+		writeNotification("Debug mode is set to %b.", showDebugText);
 		this.showDebugText = showDebugText;
 	}
 	
@@ -248,7 +265,7 @@ public class Console {
 	 */
 	public void writeDebugText(String format, Object... objects) {
 		if (showDebugText) {
-			format = "[DEBUG]: " + format;
+			format = "[debug]: " + format;
 			printfln(format, objects);
 		}
 	}
@@ -258,7 +275,19 @@ public class Console {
 	 * @param s the text to output
 	 */
 	public void writeNotification(String format, Object... objects) {
-		format = '<' + format + '>';
+		format = "[info]: " + format;
 		printfln(format, objects);
+	}
+	
+	/**
+	 * <p>Prints out a warning to the console.</p>
+	 * @param s the text to output
+	 */
+	public void writeWarning(String format, Object... objects) {
+		format = "WARNING: " + format;
+		breakLine();
+		partitionLine(3);
+		printfln(format, objects);
+		partitionLine(3);
 	}
 }

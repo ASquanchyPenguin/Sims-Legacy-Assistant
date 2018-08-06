@@ -11,13 +11,15 @@ public class Legacy implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static boolean preventTraitSharing = true;
+	public static boolean preventTraitSharing = Settings.defaultTraitSharing;
 	
 	private HashMap<String, Sim> sims;
 	private Sim selectedSim;
+	private String name;
 	
 	public Legacy() {
 		this.sims = new HashMap<String, Sim>();
+		this.name = "";
 	}
 	
 	/**
@@ -36,8 +38,8 @@ public class Legacy implements Serializable {
 		
 		sims.put(key, sim);
 		sim.assignID(key);
-		console.writeNotification("Added %s to the list of current sims! Their ID is: %s", sim.getName(), key);
-		console.partitionLine(2);
+		console.writeNotification("Added %s to the legacy! Their ID is: %s", sim.getName(), key);
+		console.partitionLine(3);
 	}
 	
 	/**
@@ -47,14 +49,17 @@ public class Legacy implements Serializable {
 	public void deleteAllSims(Console console) {
 		console.partitionLine(2);
 		console.printfln("WARNING: All sims will be deleted from this legacy.");
+		console.breakLine();
 		
-		if (console.confirmAction("Are you sure?")) {
+		if (console.confirmActionAsString("Are you sure?")) {
 			sims.clear();
 			console.printfln("All sims have been deleted from the legacy.");
+			console.partitionLine(2);
 			return;
 		}
 		
 		console.printfln("No sims were deleted from the legacy.");
+		console.partitionLine(2);
 	}
 	
 	/**
@@ -67,23 +72,26 @@ public class Legacy implements Serializable {
 		
 		if (sim != null) {			
 			console.partitionLine(2);
-			console.printfln("WARNING: %s is about to be deleted.", sim.getName());
-			if (console.confirmAction("Are you sure?")) {
+			console.printfln("WARNING: %s is about to be deleted.%n", sim.getName());
+			if (console.confirmActionAsString("Are you sure?")) {
 				if (selectedSim == sim) {
 					selectedSim = null;
 				}
 				
 				sims.remove(ID);
-				console.writeNotification("%s has been deleted.", sim.getName());
-				
+				console.printfln("%s has been deleted.", sim.getName());
+				console.partitionLine(2);
 				return;
 			} 
 				
-			console.writeNotification("%s lives another day!", sim.getName());
+			console.printfln("%s lives another day!", sim.getName());
+			console.partitionLine(2);
 			return;
 		}
 		
-		console.writeNotification("\"%s\" was not a recognized Sim-ID.", ID);
+		console.partitionLine(3);
+		console.printfln("\"%s\" was not a recognized Sim-ID.", ID);
+		console.partitionLine(3);
 	}
 	
 	/**
@@ -99,6 +107,14 @@ public class Legacy implements Serializable {
 		}
 		
 		return legacyTraits;
+	}
+	
+	/**
+	 * <p>Gets the name of this legacy.</p>
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
 	}
 	
 	/**
@@ -119,6 +135,22 @@ public class Legacy implements Serializable {
 	}
 	
 	/**
+	 * <p>Gets the list of sims in the legacy.</p>
+	 * @return the list
+	 */
+	public String getSimsAsList() {		
+		return sims.keySet().toString();
+	}
+	
+	/**
+	 * <p>Gets the size of the legacy.</p>
+	 * @return the size
+	 */
+	public int getSize() {
+		return  sims.size();
+	}
+	
+	/**
 	 * <p>Gets all the traits in this legacy.</p>
 	 * @return the traits in the legacy
 	 */
@@ -131,6 +163,22 @@ public class Legacy implements Serializable {
 		}
 		
 		return legacyTraits;
+	}
+	
+	/**
+	 * <p>Determines if the legacy has a name.</p>
+	 * @return the result of this check
+	 */
+	public boolean hasName() {
+		return (!name.equals(""));
+	}
+	
+	/**
+	 * <p>Sets the name of the legacy.</p>
+	 * @param name the new name
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	/**
@@ -173,5 +221,4 @@ public class Legacy implements Serializable {
 	public void updateSim(String id, Sim sim) {
 		sims.replace(id, sim);
 	}
-	
 }

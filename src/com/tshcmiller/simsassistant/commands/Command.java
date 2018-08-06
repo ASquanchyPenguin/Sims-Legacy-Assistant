@@ -38,6 +38,8 @@ public abstract class Command {
 			return new ListCommand();
 		case "load":
 			return new LoadCommand();
+		case "name":
+			return new NameCommand();
 		case "quit":
 			return new QuitCommand();
 		case "save":
@@ -66,7 +68,7 @@ public abstract class Command {
 		Console console = assistant.getConsole();
 		
 		if (length < arguments) {
-			console.writeNotification("This command requires %d arguments to execute.", arguments);
+			console.printfln("This command requires at least %d arguments to execute.", arguments);
 			return false;
 		}
 		
@@ -78,7 +80,9 @@ public abstract class Command {
 	 * @param console the current instance of the console
 	 */
 	protected void warnNoSelectedSim(Console console) {
+		console.partitionLine(3);
 		console.printfln("No sim is currently selected. Use \'select\' [sim-ID] to select a sim.");
+		console.partitionLine(3);
 	}
 	
 	/**
@@ -92,6 +96,8 @@ public abstract class Command {
 		XMLReader xmlFile = assistant.getCommandFile();
 		
 		String usage = xmlFile.getAttribute(name, "usage");
+		console.partitionLine(3);
 		console.writeNotification("Unable to execute this command with these arguments. Try \"%s\" instead.", usage);
+		console.partitionLine(3);
 	}
 }

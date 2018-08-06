@@ -6,6 +6,7 @@ import java.util.HashSet;
 
 import com.tshcmiller.simsassistant.Console;
 import com.tshcmiller.simsassistant.Legacy;
+import com.tshcmiller.simsassistant.Settings;
 import com.tshcmiller.simsassistant.SimsAssistant;
 import com.tshcmiller.simsassistant.Tools;
 
@@ -21,7 +22,7 @@ public class TraitSystem implements Serializable {
 	 *  <li>BALANCED_TYPE: Assigns up to one trait per type.</li>
 	 * </ol>
 	 */
-	public static TraitSystemMode mode = TraitSystemMode.BALANCED_MOOD;
+	public static TraitSystemMode mode = Settings.defaultTraitSystem;
 		
 	private ArrayList<String> traits;
 	
@@ -38,7 +39,7 @@ public class TraitSystem implements Serializable {
 	 * @param console the current instance of the console
 	 * @param sublist the current sublist of possible traits
 	 */
-	private void addBalancedMoodTrait(Console console, ArrayList<String> sublist) {
+	private String addBalancedMoodTrait(Console console, ArrayList<String> sublist) {
 		HashSet<String> types = this.getTraitTypes();
 
 		if (types.contains("emotional")) {
@@ -46,7 +47,7 @@ public class TraitSystem implements Serializable {
 			sublist.removeAll(Traits.createSubListByType("emotional"));
 		}
 		
-		addRandomTrait(console, sublist);
+		return addRandomTrait(console, sublist);
 	}
 	
 	/**
@@ -54,14 +55,14 @@ public class TraitSystem implements Serializable {
 	 * @param console the current instance of the console
 	 * @param sublist the current sublist of possible traits
 	 */
-	private void addBalancedTypeTrait(Console console, ArrayList<String> sublist) {
+	private String addBalancedTypeTrait(Console console, ArrayList<String> sublist) {
 		HashSet<String> types = this.getTraitTypes();
 		
 		for (String type : types) {
 			sublist.removeAll(Traits.createSubListByType(type));
 		}
 		
-		addRandomTrait(console, sublist);
+		return addRandomTrait(console, sublist);
 	}
 	
 	/**
@@ -69,7 +70,7 @@ public class TraitSystem implements Serializable {
 	 * @param console the current instance of the console
 	 * @param sublist the current sublist of possible traits
 	 */
-	private void addRandomTrait(Console console, ArrayList<String> sublist) {
+	private String addRandomTrait(Console console, ArrayList<String> sublist) {
 		if (sublist.isEmpty()) {
 			console.writeNotification("WARNING: Due to the current restrictions, no more unique traits are available. A random trait will be added.");
 			sublist = Traits.createSubListByAge(console, traits.size());
@@ -77,20 +78,21 @@ public class TraitSystem implements Serializable {
 		}
 		
 		String trait = sublist.get(Tools.generateRandomInteger(0, sublist.size() - 1));
-		console.writeNotification("The trait \"%s\" has been acquired!", trait);
 		traits.add(trait);
+		
+		return trait;
 	}
 	
 	/**
 	 * <p>Adds a random trait to the system, depending on its current mode.</p>
 	 * @param console the current instance of the console
 	 */
-	public void addTrait(SimsAssistant assistant) {		
+	public void addTrait(SimsAssistant assistant, String name) {		
 		Console console = assistant.getConsole();
 		Legacy legacy = assistant.getLegacy();
 		
 		if (traits.size() >= 4) {
-			console.writeNotification("No more traits may be added.");
+			console.writeNotification("%s already has all their traits.");
 			return;
 		}
 		
@@ -101,19 +103,22 @@ public class TraitSystem implements Serializable {
 			sublist.removeAll(legacy.getLegacyTraits());
 		}
 		
+		String trait = "";
 		switch (mode) {
 		case BALANCED_MOOD:
-			addBalancedMoodTrait(console, sublist);
+			trait = addBalancedMoodTrait(console, sublist);
 			break;
 		
 		case BALANCED_TYPE:
-			addBalancedTypeTrait(console, sublist);
+			trait = addBalancedTypeTrait(console, sublist);
 			break;
 			
 		default:
-			addRandomTrait(console, sublist);
+			trait = addRandomTrait(console, sublist);
 			break;
 		}
+		
+		console.writeNotification("%s has acquired the trait %s!", name, trait);
 	}
 	
 	/**
@@ -135,7 +140,7 @@ public class TraitSystem implements Serializable {
 	 * @param console the current instance of the console
 	 * @param totalTraits the number of traits to add to the system
 	 */
-	public void fillTraits(SimsAssistant assistant, int totalTraits) {
+	public void fillTraits(SimsAssistant assistant, String name, int totalTraits) {
 		Console console = assistant.getConsole();
 		
 		if (totalTraits <= 0 || totalTraits > 4) {
@@ -146,7 +151,7 @@ public class TraitSystem implements Serializable {
 		int initSize = traits.size();
 		
 		while (traits.size() < totalTraits) {
-			addTrait(assistant);
+			addTrait(assistant, name);
 		}
 		
 		console.writeDebugText("Added %d traits to system.", traits.size() - initSize);

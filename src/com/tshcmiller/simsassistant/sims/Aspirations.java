@@ -66,7 +66,7 @@ public final class Aspirations {
 			}
 		}
 		
-		console.writeDebugText("%d aspirations loaded from file.", aspirations.size());
+		console.writeNotification("Loaded %d aspirations from file.", aspirations.size());
 	}
 	
 }

@@ -104,7 +104,7 @@ public final class Traits {
 			      + traits.getNodeList("teen").size()
 			      + traits.getNodeList("child").size()
 			      + traits.getNodeList("toddler").size();
-		console.writeDebugText("Loaded %d traits.", numTraits);
+		console.writeNotification("Loaded %d traits from file.", numTraits);
 	}
 	
 	/**

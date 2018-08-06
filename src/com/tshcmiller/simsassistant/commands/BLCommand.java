@@ -16,7 +16,7 @@ public class BLCommand extends Command {
 			
 			if (input.equalsIgnoreCase("on")) {
 				Legacy.preventTraitSharing = true;
-				console.writeNotification("Balanced-Legacy is on. NOTE: This mode can handle around 8 sims before traits will naturally overlap.");
+				console.writeNotification("Balanced-Legacy is on.");
 			} else if (input.equalsIgnoreCase("off")) {
 				Legacy.preventTraitSharing = false;
 				console.writeNotification("Balanced-Legacy is off.");

@@ -2,7 +2,7 @@
 
 <commands>
 	<age description="Ages up the specified sim" usage="age (sim-ID)"/>
-	<bl description="Toggles the restriction that prevents Sims in the same household from sharing traits or aspirations." usage="bl [on/off]"/>
+	<bl description="Toggles the restriction that prevents Sims in the same household from sharing traits or aspirations" usage="bl [on/off]"/>
 	<clear description="Clears the console" usage="clear" />
 	<create description="Creates a sim with the specified age and name" usage="create [age] [name]"/>
 	<delete description="Deletes a sim by id or a legacy [-legacy] (legacy)" usage="delete (sim-ID)"/>
@@ -11,6 +11,7 @@
 	<help description="Shows a list of available commands" usage="help"/>
 	<list description="Shows all of the sims in the current legacy" usage="list"/>
 	<load description="Loads a legacy from a file" usage="load [name]" />
+	<name description="Names the current legacy." usage="name [name]" />
 	<save description="Saves the legacy to a file" usage="save [name]"/>
 	<select description="Selects the specified sim to simplify some commands" usage="select [sim-ID]" />
 	<trmode description="Toggles Trait System Settings" usage="trmode (1-3)"/>
