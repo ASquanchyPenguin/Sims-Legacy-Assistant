@@ -1,5 +1,7 @@
 package com.tshcmiller.simsassistant;
 
+import static com.tshcmiller.simsassistant.Settings.initSettings;
+import static com.tshcmiller.simsassistant.Settings.saveSettings;
 import static com.tshcmiller.simsassistant.sims.Aspirations.loadAspriations;
 import static com.tshcmiller.simsassistant.sims.Traits.loadTraits;
 import static com.tshcmiller.simsassistant.sims.Traits.writeMaps;
@@ -259,6 +261,9 @@ public class SimsAssistant {
 		console.partitionLine(3);
 		console.printfln("Starting Sims Legacy Assistant%nVersion: %s", VERSION);
 		console.partitionLine(3);
+		
+		initSettings(console);
+		
 		loadCommands();
 		loadTraits(console);
 		writeMaps(console);
@@ -280,6 +285,7 @@ public class SimsAssistant {
 		console.breakLine();
 
 		saveLegacyOnClose();
+		saveSettings(console);
 
 		console.printfln("Sims Legacy Assistant has closed.");
 		console.partitionLine(3);

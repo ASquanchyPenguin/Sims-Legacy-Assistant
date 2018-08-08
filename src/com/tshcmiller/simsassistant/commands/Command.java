@@ -46,6 +46,8 @@ public abstract class Command {
 			return new SaveCommand();
 		case "select":
 			return new SelectCommand();
+		case "settings":
+			return new SettingsCommand();
 		case "trmode":
 			return new TraitModeCommand();
 		case "rle":

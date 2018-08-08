@@ -10,7 +10,7 @@ public class Console {
 	
 	public Console() {
 		this.scanner = new Scanner(System.in);
-		this.showDebugText = Settings.defaultDebugText;
+		this.showDebugText = false;
 	}
 	
 	/**
@@ -24,7 +24,9 @@ public class Console {
 	 * <p>Clears the console to create some space for the line of output.</p>
 	 */
 	public void clear() {
-		for (int i = 0; i < Settings.defaultClearSize; i++) {
+		int size = (int) (Settings.getValue("clrsize"));
+		
+		for (int i = 0; i < size; i++) {
 			breakLine();
 		}
 	}

@@ -6,7 +6,6 @@ import java.util.HashSet;
 
 import com.tshcmiller.simsassistant.Console;
 import com.tshcmiller.simsassistant.Legacy;
-import com.tshcmiller.simsassistant.Settings;
 import com.tshcmiller.simsassistant.SimsAssistant;
 import com.tshcmiller.simsassistant.Tools;
 
@@ -22,7 +21,7 @@ public class TraitSystem implements Serializable {
 	 *  <li>BALANCED_TYPE: Assigns up to one trait per type.</li>
 	 * </ol>
 	 */
-	public static TraitSystemMode mode = Settings.defaultTraitSystem;
+	public static TraitSystemMode mode;
 		
 	private ArrayList<String> traits;
 	

@@ -11,7 +11,7 @@ public class Legacy implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static boolean preventTraitSharing = Settings.defaultTraitSharing;
+	public static boolean preventTraitSharing;
 	
 	private HashMap<String, Sim> sims;
 	private Sim selectedSim;

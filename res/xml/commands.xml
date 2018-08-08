@@ -14,6 +14,7 @@
 	<name description="Names the current legacy." usage="name [name]" />
 	<save description="Saves the legacy to a file" usage="save [name]"/>
 	<select description="Selects the specified sim to simplify some commands" usage="select [sim-ID]" />
+	<settings description="Toggles and shows the program settings." usage="settings [setting] (value)" />
 	<trmode description="Toggles Trait System Settings" usage="trmode (1-3)"/>
 	<quit description="Quits and exits SimsAssistant" usage="quit" />
 	<rle description="Rolls a random life event for a non-specified sim" usage="rle" />
