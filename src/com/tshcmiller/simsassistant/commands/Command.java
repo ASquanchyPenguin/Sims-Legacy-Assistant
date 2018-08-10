@@ -20,22 +20,16 @@ public abstract class Command {
 		switch (name) {
 		case "age":
 			return new AgeCommand();
-		case "bl":
-			return new BLCommand();
 		case "clear":
 			return new ClearCommand();
 		case "create":
 			return new CreateCommand();
-		case "debug":
-			return new DebugCommand();
 		case "delete":
 			return new DeleteCommand();
 		case "deselect":
 			return new DeleselectCommand();
 		case "help":
 			return new HelpCommand();
-		case "list":
-			return new ListCommand();
 		case "load":
 			return new LoadCommand();
 		case "name":
@@ -48,12 +42,12 @@ public abstract class Command {
 			return new SelectCommand();
 		case "settings":
 			return new SettingsCommand();
-		case "trmode":
-			return new TraitModeCommand();
 		case "rle":
 			return new RLECommand();
 		case "show":
 			return new ShowCommand();
+		case "stip":
+			return new StipCommand();
 		default:
 			System.err.printf(">>>NOTE: %s is not a registered command!<<<%n", name);
 			return null;

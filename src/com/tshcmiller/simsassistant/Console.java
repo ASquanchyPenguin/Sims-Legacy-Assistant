@@ -150,10 +150,8 @@ public class Console {
 	 * <p>Prints out a numbered list in descending order. The 0th element is considered to be the Title of the list.</p>
 	 * @param list the list of strings to print out
 	 */
-	public void printList(String... list) {
-		writeln(list[0]);
-		
-		for (int i = 1; i < list.length; i++) {
+	public void printList(String... list) {		
+		for (int i = 0; i < list.length; i++) {
 			printfln("%d. %s", i, list[i]);
 		}
 		

@@ -35,6 +35,6 @@ public class RandomLifeEvents {
 			randomLifeEvents.add(xmlFile.getAttribute(node, "description"));		
 		}
 		
-		console.writeDebugText("Loaded %d Random Life Events from file.", randomLifeEvents.size());
+		console.writeNotification("Loaded %d Random Life Events from file.", randomLifeEvents.size());
 	}
 }

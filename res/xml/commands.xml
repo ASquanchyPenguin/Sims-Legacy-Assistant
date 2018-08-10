@@ -2,20 +2,17 @@
 
 <commands>
 	<age description="Ages up the specified sim" usage="age (sim-ID)"/>
-	<bl description="Toggles the restriction that prevents Sims in the same household from sharing traits or aspirations" usage="bl [on/off]"/>
 	<clear description="Clears the console" usage="clear" />
 	<create description="Creates a sim with the specified age and name" usage="create [age] [name]"/>
 	<delete description="Deletes a sim by id or a legacy [-legacy] (legacy)" usage="delete (sim-ID)"/>
 	<deselect description="Deselects the currently selected sim, if there is one" usage="deselect"/>
-	<debug description="Shows or hides the debug text for the program" usage="debug [on/off]"/>
 	<help description="Shows a list of available commands" usage="help"/>
-	<list description="Shows all of the sims in the current legacy" usage="list"/>
 	<load description="Loads a legacy from a file" usage="load [name]" />
 	<name description="Names the current legacy." usage="name [name]" />
 	<save description="Saves the legacy to a file" usage="save [name]"/>
 	<select description="Selects the specified sim to simplify some commands" usage="select [sim-ID]" />
 	<settings description="Toggles and shows the program settings." usage="settings [setting] (value)" />
-	<trmode description="Toggles Trait System Settings" usage="trmode (1-3)"/>
+	<stip description="Adds a stipulation to a sim if they are old enough." usage="stip (sim-ID)" />
 	<quit description="Quits and exits SimsAssistant" usage="quit" />
 	<rle description="Rolls a random life event for a non-specified sim" usage="rle" />
 	<show description="Shows who the specified sim is" usage="show (sim-ID)"/>

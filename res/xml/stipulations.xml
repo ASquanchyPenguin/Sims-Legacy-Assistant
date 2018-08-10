@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<stipulations>
+	<big-spender description="This Sim is terrible with money and must buy at least 1 expensive item per week."/>
+	<dont-starve description="This Sim may only eat when their hunger is in the red."/>
+	<druggie description="This Sim consumes unneeded medicine at least 3 times per week."/>
+	<hates-cooking description="This Sim may never cook a meal in their life." />
+	<hermit description="This Sim may never leave the house."/>
+	<nice-guy description="This Sim may only use mean social interactions if rejected while flirting."/>
+	<organic description="This Sim may only eat food grown by them." />
+	<sensitive description="This Sim must only use mean social interactions when angry, sad, tense, or bored" />
+	<tough-guy description="This Sim gets into a fist fight anytime they recieve a negative moodley in public." />
+</stipulations>

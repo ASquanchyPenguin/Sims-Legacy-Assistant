@@ -95,6 +95,7 @@ public abstract class Sim implements Serializable {
 		console.printfln("Here are the current details for %s", this.toString());
 		console.printfln("Sim-ID: %s", id);
 		console.printfln("Age: %d (%s)", age, getAgeAsString());
+		console.breakLine();
 		console.printfln("Aspiration: %s", aspiration);
 		console.printfln("Traits: %s", traitSystem.getTraitsAsList());
 		console.partitionLine(2);
@@ -104,7 +105,7 @@ public abstract class Sim implements Serializable {
 	 * <p>Gets the title for the current age</p>
 	 * @return the title for that age
 	 */
-	private String getAgeAsString() {
+	protected String getAgeAsString() {
 		switch(age) {
 			case 0: return "Toddler";
 			case 1: return "Child";
