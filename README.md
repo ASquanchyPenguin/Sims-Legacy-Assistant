@@ -1,4 +1,4 @@
-# Sims Legacy Assistant (Beta)
+# Sims Legacy Assistant
 
 *Last Updated 12 August, 2018*<br/>
 
