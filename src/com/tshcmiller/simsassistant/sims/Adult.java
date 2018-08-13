@@ -88,6 +88,21 @@ public class Adult extends Sim {
 	public ArrayList<String> getStipulations() {
 		return stipulations;
 	}
+	
+	public void rollJobStipulation(Console console) {
+		if (maxCareerLevel > -1) {
+			console.printfln("%s can reach max career level of %d.", name, maxCareerLevel);
+			return;
+		}
+		
+		int days = Tools.generateRandomInteger(2, 7);
+		this.maxCareerLevel = Tools.generateRandomInteger(1, 10);
+		
+		console.partitionLine(3);
+		console.printfln("%s must wait %d days to get a job.", name, days);
+		console.printfln("%s can reach max career level of %d", name, maxCareerLevel);
+		console.partitionLine(3);
+	}
 
 	@Override
 	public void rollTraits(SimsAssistant assistant) {

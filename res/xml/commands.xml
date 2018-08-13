@@ -15,5 +15,6 @@
 	<stip description="Adds a stipulation to a sim if they are old enough." usage="stip (sim-ID)" />
 	<quit description="Quits and exits SimsAssistant" usage="quit" />
 	<rle description="Rolls a random life event for a non-specified sim" usage="rle" />
+	<rr description="Rerolls a trait or aspiration" usage="rr [trait/aspiration]"/>
 	<show description="Shows who the specified sim is" usage="show (sim-ID)"/>
 </commands>

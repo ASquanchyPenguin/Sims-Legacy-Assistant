@@ -181,6 +181,14 @@ public class TraitSystem implements Serializable {
 	}
 	
 	/**
+	 * <p>Gets the number of traits in the system.</p>
+	 * @return the number of traits
+	 */
+	public int getSize() {
+		return traits.size();
+	}
+	
+	/**
 	 * <p>Gets the number of traits in this system.</p>
 	 * @return the number of traits.
 	 */

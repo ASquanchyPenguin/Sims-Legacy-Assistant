@@ -22,7 +22,7 @@ import com.tshcmiller.simsassistant.sims.Sim;
 
 public class SimsAssistant {
 		
-	public static final String VERSION = "1.0";
+	public static final String VERSION = "1.0.1";
 			
 	private ArrayList<String> commands;
 	private Console console;

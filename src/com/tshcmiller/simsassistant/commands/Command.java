@@ -44,6 +44,8 @@ public abstract class Command {
 			return new SettingsCommand();
 		case "rle":
 			return new RLECommand();
+		case "rr":
+			return new RerollCommand();
 		case "show":
 			return new ShowCommand();
 		case "stip":

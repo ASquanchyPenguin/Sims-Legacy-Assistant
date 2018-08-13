@@ -65,7 +65,7 @@ public class CreateCommand extends Command {
 			Sim sim = createNewSim(assistant, age, name);
 			
 			if (!console.confirmActionAsString("Do you want to randomize age appropriate traits and aspirations?")) {
-				console.writeNotification("You can edit this Sim when needed with \"/edit.\"");
+				console.writeNotification("You can edit this Sim when needed with \"/rr [trait/aspiration].\"");
 				sim.setAspriation("None");
 			} else {
 				sim.rollTraits(assistant);
